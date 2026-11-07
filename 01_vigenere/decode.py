@@ -75,6 +75,26 @@ def _reverse_distances_to_chars(distance_tables: dict[int, list[int]]) -> list[s
     return keys
 
 
+def _decrypt_text(code: str, key: str) -> str:
+    _validate_key(key)
+    key = key.upper()
+    text = []
+    pos = 0
+    for char in code.upper():
+        if char in TABLE:
+            shift = TABLE[key[pos % len(key)]]
+            text.append(VOCAB[(TABLE[char] - shift) % 26])
+            pos += 1
+        else:
+            text.append(char)
+    return "".join(text)
+
+
+def _validate_key(key: str) -> None:
+    if not (key.isalpha() and key.isascii()):
+        raise ValueError("Key has to consist of letters A-Z.")
+
+
 def read_file(input_path: Path) -> str:
     with open(input_path, encoding="utf-8") as f:
         return f.read()
@@ -109,26 +129,6 @@ def decrypt_texts(text: str, keys: list[str]) -> str:
         message += "____________________________________________________________"
         message += "\n"
     return message
-
-
-def _decrypt_text(code: str, key: str) -> str:
-    _validate_key(key)
-    key = key.upper()
-    text = []
-    pos = 0
-    for char in code.upper():
-        if char in TABLE:
-            shift = TABLE[key[pos % len(key)]]
-            text.append(VOCAB[(TABLE[char] - shift) % 26])
-            pos += 1
-        else:
-            text.append(char)
-    return "".join(text)
-
-
-def _validate_key(key: str) -> None:
-    if not (key.isalpha() and key.isascii()):
-        raise ValueError("Key has to consist of letters A-Z.")
 
 
 def main(input_path: str, output_path: str, delta: float, char: str):
