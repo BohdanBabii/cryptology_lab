@@ -43,9 +43,9 @@ def main(input: str, key: str, output: str):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Vigenère encoder")
-    parser.add_argument("--input-path", required=True)
-    parser.add_argument("--key", required=True)
-    parser.add_argument("--output-path", required=True)
+    parser = argparse.ArgumentParser(description="Vigenere encoder")
+    parser.add_argument("--input-path", required=True, default="./data/input.txt")
+    parser.add_argument("--output-path", required=True, default="./data/output.txt")
+    parser.add_argument("--key", required=True, default="SCHLUESSEL")
     args = parser.parse_args()
     main(args.input_path, args.key, args.output_path)

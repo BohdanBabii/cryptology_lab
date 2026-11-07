@@ -131,7 +131,7 @@ def _validate_key(key: str) -> None:
         raise ValueError("Key has to consist of letters A-Z.")
 
 
-def main(input_path: str, output_path: str, delta: float = 0.06, char: str = "E"):
+def main(input_path: str, output_path: str, delta: float, char: str):
     input = read_file(input_path=Path(input_path))
     keys = decode_keys(input_file=input, delta=delta, char=char)
     text = decrypt_texts(text=input, keys=keys)
@@ -140,9 +140,9 @@ def main(input_path: str, output_path: str, delta: float = 0.06, char: str = "E"
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Vigenere decoder")
-    parser.add_argument("--input-path", required=True)
-    parser.add_argument("--output-path", required=True)
-    parser.add_argument("--delta", type=float, default=0.9)
+    parser.add_argument("--input-path", required=True, default="./data/input.txt")
+    parser.add_argument("--output-path", required=True, default="./data/encoded.txt")
+    parser.add_argument("--delta", type=float, default=0.064)
     parser.add_argument("--char", default="E")
     args = parser.parse_args()
     main(args.input_path, args.output_path, args.delta, args.char)

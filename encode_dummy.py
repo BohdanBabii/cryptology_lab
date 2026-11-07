@@ -19,7 +19,7 @@ def main(input: str, key: str, output: str):
     write_file(output_path=Path(output), code=code)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Vigenère encoder")
+    parser = argparse.ArgumentParser(description="Vigenere encoder")
     parser.add_argument("--input-path", required=True)
     parser.add_argument("--key", required=True)
     parser.add_argument("--output-path", required=True)

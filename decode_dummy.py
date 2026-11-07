@@ -15,7 +15,7 @@ def main(input: str,  output: str):
     print(key)
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Vigenère encoder")
+    parser = argparse.ArgumentParser(description="Vigenere encoder")
     parser.add_argument("--input-path", required=True)
     parser.add_argument("--output-path", required=True)
     args = parser.parse_args()
